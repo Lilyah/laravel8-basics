@@ -29,7 +29,7 @@
 - MySQL DB
 
 ## Features
-- PHP image handling and manipulation library - [Intervention Image](http://image.intervention.io/)
+- PHP image handling and manipulation library - [Intervention Image, v 2.*](http://image.intervention.io/)
 
 
 ## Screenshots
