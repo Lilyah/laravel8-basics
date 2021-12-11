@@ -1,5 +1,6 @@
-# Basic CMS system with Laravel 8. Fron-end, Admin panel with full registration system (Forgot Password, Reset Password)
-> CMS Blog system based on the cource "Laravel 8 - Build Advance Ecommerce Project A-Z" by Kazi Ariyan 
+# CMS system with Laravel 8
+> CMS Blog system - Fron-end, Admin panel with full registration system (Forgot Password, Reset Password).
+> The project is based on the cource "Laravel 8 - Build Advance Ecommerce Project A-Z" by Kazi Ariyan 
 > Cource can be found [_here_](https://www.udemy.com/course/laravel-advance-ecommerce-project/).
 
 ## Table of Contents
