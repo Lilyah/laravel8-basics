@@ -34,7 +34,8 @@
                                 <thead>
                                   <tr>
                                     <th scope="col" width="5%">ID</th>
-                                    <th scope="col" width="20%">About Title</th>
+                                    <th scope="col" width="5%">Visability</th>
+                                    <th scope="col" width="15%">About Title</th>
                                     <th scope="col" width="20%">Short Description</th>
                                     <th scope="col" width="20%">Long Description</th>
                                     <th scope="col" width="10%">Updated At</th>
@@ -48,6 +49,7 @@
 
                                         <tr>
                                           <th scope="row">{{ $about->id }}</th>
+                                          <td>{{ $about->visability }}</td>
                                           <td>{{ $about->title }}</td>
                                           <td>{{ $about->short_desc }}</td>
                                           <td>{{ $about->long_desc }}</td>
