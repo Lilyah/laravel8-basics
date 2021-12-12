@@ -36,6 +36,7 @@ class AboutController extends Controller
     public function StoreAbout(Request $request){
         $validated = $request->validate([
             'title' => 'required',
+            'visability' => 'required',
             'short_desc' => 'required',
             'long_desc' => 'required',
             ],
@@ -44,6 +45,7 @@ class AboutController extends Controller
         // Eloquent ORM
         HomeAbout::insert([ // "HomeAbout::" is the name of the model in app/Models/HomeAbout.php
             'title' => $request->title, // DB field => input field name from html form
+            'visability' => $request->visability,     
             'short_desc' => $request->short_desc,            
             'long_desc' => $request->long_desc,     
             'created_at' => Carbon::now()
@@ -66,9 +68,18 @@ class AboutController extends Controller
 
     // Update method
     public function Update(Request $request, $id){
+        $validated = $request->validate([
+            'title' => 'required',
+            'visability' => 'required',
+            'short_desc' => 'required',
+            'long_desc' => 'required',
+            ],
+        );
+        
         // Eloquent ORM
         HomeAbout::find($id)->update([
             'title' => $request->title,
+            'visability' => $request->visability,
             'short_desc' => $request->short_desc,
             'long_desc' => $request->long_desc,
             'updated_at' => Carbon::now()
