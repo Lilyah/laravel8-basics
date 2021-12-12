@@ -42,13 +42,15 @@ class AboutController extends Controller
             ],
         );
 
-        $visability_new_about = $request->visability; // passing the uploaded image into a variable $brand_image
+        $visability_new_about = $request->visability; // passing the data from visability html field into a variable $visability_new_about
 
-        if($visability_new_about == 'active'){
 
+        if($visability_new_about == 'active'){ // if the required visability from the form is 'active'
+
+            // counting the 'active' records in the db and if there is 1 we denied to insert data
             $count_active_from_db = DB::table('home_abouts')->where('visability', '=', 'active')->count();
             if ($count_active_from_db == 1){
-                    return redirect()->back()->with('failure', 'There is another Active About. You can have only 1 Active About at a time.'); // redirect to previous page with message displaying for success
+                    return redirect()->back()->with('failure', 'There is another Active About. You can have only 1 Active About at a time.'); // redirect to previous page with message displaying for failure
             }
         } else {
 
@@ -87,13 +89,14 @@ class AboutController extends Controller
             ],
         );
 
-        $visability_new_about = $request->visability; // passing the uploaded image into a variable $brand_image
+        $visability_new_about = $request->visability; // passing the data from visability html field into a variable $visability_new_about
 
-        if($visability_new_about == 'active'){
+        if($visability_new_about == 'active'){ // if the required visability from the form is 'active'
 
+            // counting the 'active' records in the db and if there is 1 we denied to update the record
             $count_active_from_db = DB::table('home_abouts')->where('visability', '=', 'active')->count();
             if ($count_active_from_db == 1){
-                    return redirect()->back()->with('failure', 'There is another Active About. You can have only 1 Active About at a time.'); // redirect to previous page with message displaying for success
+                    return redirect()->back()->with('failure', 'There is another Active About. You can have only 1 Active About at a time.'); // redirect to previous page with message displaying for failure
             } else {
                 // Eloquent ORM
                 HomeAbout::find($id)->update([
