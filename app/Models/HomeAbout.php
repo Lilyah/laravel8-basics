@@ -12,5 +12,6 @@ class HomeAbout extends Model
         'title',
         'short_desc',
         'long_desc',
+        'visability',
     ];
 }
