@@ -42,16 +42,27 @@ class AboutController extends Controller
             ],
         );
 
-        // Eloquent ORM
-        HomeAbout::insert([ // "HomeAbout::" is the name of the model in app/Models/HomeAbout.php
-            'title' => $request->title, // DB field => input field name from html form
-            'visability' => $request->visability,     
-            'short_desc' => $request->short_desc,            
-            'long_desc' => $request->long_desc,     
-            'created_at' => Carbon::now()
-        ]);
+        $visability_new_about = $request->visability; // passing the uploaded image into a variable $brand_image
 
-        return redirect()->route('home.about')->with('success', 'About added successfully'); // redirect to previous page with message displaying for success
+        if($visability_new_about == 'active'){
+
+            $count_active_from_db = DB::table('home_abouts')->where('visability', '=', 'active')->count();
+            if ($count_active_from_db == 1){
+                    return redirect()->back()->with('failure', 'There is another Active About. You can have only 1 Active About at a time.'); // redirect to previous page with message displaying for success
+            }
+        } else {
+
+            // Eloquent ORM
+            HomeAbout::insert([ // "HomeAbout::" is the name of the model in app/Models/HomeAbout.php
+                'title' => $request->title, // DB field => input field name from html form
+                'visability' => $request->visability,     
+                'short_desc' => $request->short_desc,            
+                'long_desc' => $request->long_desc,     
+                'created_at' => Carbon::now()
+            ]);     
+            return redirect()->route('home.about')->with('success', 'About added successfully'); // redirect to previous page with message displaying for success
+        
+        }
     }
 
 
@@ -75,17 +86,39 @@ class AboutController extends Controller
             'long_desc' => 'required',
             ],
         );
-        
-        // Eloquent ORM
-        HomeAbout::find($id)->update([
-            'title' => $request->title,
-            'visability' => $request->visability,
-            'short_desc' => $request->short_desc,
-            'long_desc' => $request->long_desc,
-            'updated_at' => Carbon::now()
-        ]);
 
-        return redirect()->route('home.about')->with('success', 'About updated successfully'); // redirect to home/about page with message displaying for success
+        $visability_new_about = $request->visability; // passing the uploaded image into a variable $brand_image
+
+        if($visability_new_about == 'active'){
+
+            $count_active_from_db = DB::table('home_abouts')->where('visability', '=', 'active')->count();
+            if ($count_active_from_db == 1){
+                    return redirect()->back()->with('failure', 'There is another Active About. You can have only 1 Active About at a time.'); // redirect to previous page with message displaying for success
+            } else {
+                // Eloquent ORM
+                HomeAbout::find($id)->update([
+                    'title' => $request->title,
+                    'visability' => $request->visability,
+                    'short_desc' => $request->short_desc,
+                    'long_desc' => $request->long_desc,
+                    'updated_at' => Carbon::now()
+                ]);
+
+                    return redirect()->route('home.about')->with('success', 'About updated successfully'); // redirect to home/about page with message displaying for success
+            }
+        } else {
+
+            // Eloquent ORM
+            HomeAbout::find($id)->update([
+                'title' => $request->title,
+                'visability' => $request->visability,
+                'short_desc' => $request->short_desc,
+                'long_desc' => $request->long_desc,
+                'updated_at' => Carbon::now()
+            ]);
+
+            return redirect()->route('home.about')->with('success', 'About updated successfully'); // redirect to home/about page with message displaying for success
+        }
     
     }
 
