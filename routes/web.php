@@ -35,7 +35,8 @@ Route::get('/email/verify', function () {
 
 Route::get('/', function () {
     $brands = DB::table('brands')->get(); // accessing table 'brands'
-    return view('home', compact('brands')); // compact is for passing the data from $brands
+    $abouts = DB::table('home_abouts')->orderby('id', 'desc')->first(); // accessing table 'home_abouts' and get first record from the db
+    return view('home', compact('brands', 'abouts')); // compact is for passing the data from $brands
 });
 
 Route::get('/home', function () {
