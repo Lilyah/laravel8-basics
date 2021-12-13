@@ -71,6 +71,7 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
+                                        <td></td>
                                         <td>{{ $homeabout->links() }}</td>
                                     </tr>
                                     
