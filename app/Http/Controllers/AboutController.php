@@ -50,7 +50,7 @@ class AboutController extends Controller
             // counting the 'active' records in the db and if there is 1 we denied to insert data
             $count_active_from_db = DB::table('home_abouts')->where('visability', '=', 'active')->count();
             if ($count_active_from_db == 1){
-                    return redirect()->back()->with('failure', 'There is another Active About. You can have only 1 Active About at a time.'); // redirect to previous page with message displaying for failure
+                    return redirect()->back()->withInput()->with('failure', 'There is another Active About. You can have only 1 Active About at a time.'); // withInput() is for not losing the input data in case of failure; redirect to previous page with message displaying for failure
             }
         } else {
 
