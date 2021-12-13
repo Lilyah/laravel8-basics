@@ -16,7 +16,7 @@
 
 					<div class="form-group">
 						<label for="">About Title</label>
-						<input type="text" class="form-control" id="" name="title" placeholder="About Title">
+						<input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" >
 						<!-- Displaying errors if there is any -->
 						@error('title')
                         <span class="text-danger">{{ $message }}</span>
