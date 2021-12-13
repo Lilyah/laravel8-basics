@@ -50,7 +50,7 @@
 
 					<div class="form-group">
 						<label for="">About Short Description</label>
-						<textarea class="form-control" id="" name="short_desc" rows="3" placeholder="About Short Description"></textarea>
+						<textarea class="form-control" id="" name="short_desc" rows="3">{{ old('short_desc') }}</textarea>
 						<!-- Displaying errors if there is any -->
 						@error('short_desc')
                         <span class="text-danger">{{ $message }}</span>
@@ -60,7 +60,7 @@
 
 					<div class="form-group">
 						<label for="">About Long Description</label>
-						<textarea class="form-control" id="" name="long_desc" rows="3" placeholder="About Long Description"></textarea>
+						<textarea class="form-control" id="" name="long_desc" rows="3">{{ old('long_desc') }}</textarea>
 						<!-- Displaying errors if there is any -->
 						@error('long_desc')
                         <span class="text-danger">{{ $message }}</span>
