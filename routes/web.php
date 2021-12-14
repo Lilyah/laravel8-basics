@@ -5,6 +5,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ServicesController;
+use App\Models\Services;
 use Illuminate\Support\Facades\Route;
 use App\Models\User; // Activate this in case of using type $users = User::all();
 use Illuminate\Support\Facades\DB; // Activate this in case of usin Query builder of type $users = DB::table('users')->get();
@@ -34,10 +36,31 @@ Route::get('/email/verify', function () {
 })->middleware('auth')->name('verification.notice');
 
 Route::get('/', function () {
-    $brands = DB::table('brands')->get(); // accessing table 'brands'
-    // $abouts = DB::table('home_abouts')->orderby('id', 'desc')->first(); // accessing table 'home_abouts' and get first record from the db
+    $brands = DB::table('brands')->get(); // Accessing table 'brands'
     $abouts = DB::table('home_abouts')->where('visability', '=', 'active')->orderby('updated_at', 'desc')->first(); // accessing table 'home_abouts' and get last updated record with visability 'active' record from the db
-    return view('home', compact('brands', 'abouts')); // compact is for passing the data from $brands
+
+    // Accessing table 'services' in way that every record can be displated alone
+    $services_subtitle = DB::table('services')->where('id', '7')->first();
+    $service1 = DB::table('services')->where('id', '1')->first();
+    $service2 = DB::table('services')->where('id', '2')->first();
+    $service3 = DB::table('services')->where('id', '3')->first();
+    $service4 = DB::table('services')->where('id', '4')->first();
+    $service5 = DB::table('services')->where('id', '5')->first();
+    $service6 = DB::table('services')->where('id', '6')->first();
+
+
+    // Compact is for passing the data from $brands, abouts, services
+    return view('home', compact(
+        'brands', 
+        'abouts', 
+        'services_subtitle',
+        'service1', 
+        'service2',
+        'service3',
+        'service4',
+        'service5',
+        'service6',
+    ));
 });
 
 Route::get('/home', function () {
@@ -111,6 +134,14 @@ Route::post('/store/about', [AboutController::class, 'StoreAbout'])->name('store
 Route::get('/about/edit/{id}', [AboutController::class, 'Edit']);
 Route::post('/about/update/{id}', [AboutController::class, 'Update']);
 Route::get('/about/delete/{id}', [AboutController::class, 'Delete']);
+
+
+/* Admin Services Routes
+*/
+Route::get('/home/services', [ServicesController::class, 'HomeServices'])->name('home.services');
+Route::get('/service/edit/{id}', [ServicesController::class, 'Edit']);
+Route::post('/services/update/{id}', [ServicesController::class, 'Update']);
+
 
 
 
