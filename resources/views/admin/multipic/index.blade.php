@@ -1,15 +1,13 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Multi Picture
-        </h2>
-    </x-slot>
+@extends('admin.admin_master')
+
+@section('admin')
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
+                        <div class="card">
 
                         <!-- Displaying success messages after some action in the page -->
                         @if(session('success'))
@@ -18,24 +16,59 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
-                        
-                        <div class="card-group">
 
-                            @foreach($images as $multi)
-                                <div class="col-md-4 m-5">
-                                    <div class="card">
-                                        <img src="{{ asset($multi->image) }}" alt="">
-                                    </div>
-                                </div>
-                            @endforeach
-                            
-                        </div><!-- .card-group -->
+                            <div class="card-header">
+                                All Images For Home Portfolio 
+                            </div>
+
+
+                            <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Created At</th>
+                                    <th scope="col">Updated At</th>
+                                    <th scope="col">Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach($images as $multi)
+
+                                        <tr>
+                                          <th scope="row">{{ $multi->id }}</th>
+                                          <td>
+                                              <img src="{{ asset($multi->image) }}" style="height:60px;" alt="">
+                                          </td> 
+                                          <td>{{ $multi->created_at }}</td>
+                                          <td>{{ $multi->updated_at }}</td>
+                                          <td>
+                                              <a href="#" class="btn btn-info" style="color:white">Edit</a>
+                                              <a href="#" onclick="return confirm('Are you sure you want to delete this Image?')" class="btn btn-danger">Delete</a>
+                                          </td>
+                                        </tr>
+
+                                    @endforeach
+
+                                        <!-- Pagination -->
+                                        <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>{{ $images->links() }}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>                          
+                        </div><!-- .card -->
                     </div><!-- .col-md-8 -->
 
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-header">
-                                Multi Image
+                                Add Images
                             </div>
                             <div class="card-body">
                                 <form action="{{ route('store.image') }}" method="POST" enctype="multipart/form-data">
@@ -61,5 +94,4 @@
         </div><!-- .max-w-7xl mx-auto sm:px-6 lg:px-8 -->
     </div>
 
-
-</x-app-layout>
+@endsection
