@@ -156,7 +156,10 @@ class BrandController extends Controller
 
     // Multi images All
     public function Multipic(){
-        $images = Multipic::all(); // getting all data from Multipic model
+        $images = Multipic::orderBy('id', 'desc')->paginate(
+            $perPage = 10, $columns = ['*'], $pageName = 'images'
+         ); // Taking all data (with paginate() OR with get() OR with all()) from the db table and assigning it into $images; ordering it by id in desc  ; getting all data from Multipic model
+
         return view('admin.multipic.index', compact('images')); // passing $images with compact to the index page
     }
 
