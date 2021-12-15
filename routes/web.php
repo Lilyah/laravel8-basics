@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\MultipicController;
 use App\Http\Controllers\ServicesController;
 use App\Models\Services;
 use Illuminate\Support\Facades\Route;
@@ -94,8 +95,8 @@ Route::get('/brand/delete/{id}', [BrandController::class, 'Delete']);
 
 /* Multi Image Routes
 */
-Route::get('/multi/image', [BrandController::class, 'Multipic'])->name('multi.image');
-Route::post('/multi/add', [BrandController::class, 'AddImg'])->name('store.image');
+Route::get('/multi/image', [MultipicController::class, 'Multipic'])->name('multi.image');
+Route::post('/multi/add', [MultipicController::class, 'AddImg'])->name('store.image');
 
 
 
