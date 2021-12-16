@@ -49,6 +49,13 @@ Route::get('/', function () {
     $service5 = DB::table('services')->where('id', '5')->first();
     $service6 = DB::table('services')->where('id', '6')->first();
 
+    // Accessing table 'multipics' in way that every record can be displated alone
+    $multipic_all = DB::table('services')->where('filter', 'all')->orderBy('id', 'desc');
+    $multipic_app = DB::table('services')->where('filter', 'app')->orderBy('id', 'desc');
+    $multipic_card = DB::table('services')->where('filter', 'card')->orderBy('id', 'desc');
+    $multipic_web = DB::table('services')->where('filter', 'web')->orderBy('id', 'desc');
+    $multipic_null = DB::table('services')->where('filter', '')->orderBy('id', 'desc');
+
 
     // Compact is for passing the data from $brands, abouts, services
     return view('home', compact(
@@ -61,6 +68,11 @@ Route::get('/', function () {
         'service4',
         'service5',
         'service6',
+        'multipic_all',
+        'multipic_app',
+        'multipic_card',
+        'multipic_web',
+        'multipic_null',
     ));
 });
 
@@ -97,6 +109,9 @@ Route::get('/brand/delete/{id}', [BrandController::class, 'Delete']);
 */
 Route::get('/multi/image', [MultipicController::class, 'Multipic'])->name('multi.image');
 Route::post('/multi/add', [MultipicController::class, 'AddImg'])->name('store.image');
+Route::get('/multi/edit/{id}', [MultipicController::class, 'Edit']);
+Route::post('/multi/update/{id}', [MultipicController::class, 'Update']);
+Route::get('/multi/delete/{id}', [MultipicController::class, 'Delete']);
 
 
 
