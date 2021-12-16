@@ -27,6 +27,8 @@
                                   <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Image</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Filter</th>
                                     <th scope="col">Created At</th>
                                     <th scope="col">Updated At</th>
                                     <th scope="col">Action</th>
@@ -41,11 +43,13 @@
                                           <td>
                                               <img src="{{ asset($multi->image) }}" style="height:60px;" alt="">
                                           </td> 
+                                          <td>{{ $multi->title }}</td>
+                                          <td>{{ $multi->filter }}</td>
                                           <td>{{ $multi->created_at }}</td>
                                           <td>{{ $multi->updated_at }}</td>
                                           <td>
-                                              <a href="#" class="btn btn-info" style="color:white">Edit</a>
-                                              <a href="#" onclick="return confirm('Are you sure you want to delete this Image?')" class="btn btn-danger">Delete</a>
+                                              <a href="{{ url('multi/edit/'.$multi->id)  }}" class="btn btn-info" style="color:white">Edit</a>
+                                              <a href="{{ url('multi/delete/'.$multi->id)  }}" onclick="return confirm('Are you sure you want to delete this Image?')" class="btn btn-danger">Delete</a>
                                           </td>
                                         </tr>
 
@@ -53,6 +57,8 @@
 
                                         <!-- Pagination -->
                                         <tr>
+                                        <td></td>
+                                        <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
