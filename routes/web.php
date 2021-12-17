@@ -49,13 +49,13 @@ Route::get('/', function () {
     $service5 = DB::table('services')->where('id', '5')->first();
     $service6 = DB::table('services')->where('id', '6')->first();
 
-    // Accessing table 'multipics' in way that every record can be displated alone
-    $multipic_all = DB::table('services')->where('filter', 'all')->orderBy('id', 'desc');
-    $multipic_app = DB::table('services')->where('filter', 'app')->orderBy('id', 'desc');
-    $multipic_card = DB::table('services')->where('filter', 'card')->orderBy('id', 'desc');
-    $multipic_web = DB::table('services')->where('filter', 'web')->orderBy('id', 'desc');
-    $multipic_null = DB::table('services')->where('filter', '')->orderBy('id', 'desc');
-
+    // Accessing table 'multipics'
+    $multipic_app = DB::table('multipics')->where('filter', 'app')->get();
+    $multipic_app_count = DB::table('multipics')->where('filter', 'app')->count();
+    $multipic_card = DB::table('multipics')->where('filter', 'card')->get();
+    $multipic_card_count = DB::table('multipics')->where('filter', 'card')->count();
+    $multipic_web = DB::table('multipics')->where('filter', 'web')->get();
+    $multipic_web_count = DB::table('multipics')->where('filter', 'web')->count();
 
     // Compact is for passing the data from $brands, abouts, services
     return view('home', compact(
@@ -68,11 +68,12 @@ Route::get('/', function () {
         'service4',
         'service5',
         'service6',
-        'multipic_all',
         'multipic_app',
+        'multipic_app_count',
         'multipic_card',
+        'multipic_card_count',
         'multipic_web',
-        'multipic_null',
+        'multipic_web_count',
     ));
 });
 
