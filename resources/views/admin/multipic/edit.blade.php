@@ -36,8 +36,6 @@
                                         <div class="col-12 col-md-3">
 
                                             <select class="form-control" id="filter" name="filter">
-												<option value="All" name="filter"
-						                		{{ ($multi->filter == 'All') ? 'selected' : '' }}> <!-- if the field in the db is 'all' then this button will be checked -->All</option>
 												<option value="App" name="filter"
 						                		{{ ($multi->filter == 'App') ? 'selected' : '' }}> <!-- if the field in the db is 'app' then this card will be checked -->App</option>
 												<option value="Card" name="filter"
