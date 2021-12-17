@@ -86,6 +86,7 @@ Route::get('/about', function () {
 });//->middleware('age');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('con');
+Route::get('/portfolio', [MultipicController::class, 'Portfolio'])->name('portfolio');
 
 /* Category Routes
 */
@@ -108,11 +109,11 @@ Route::get('/brand/delete/{id}', [BrandController::class, 'Delete']);
 
 /* Multi Image Routes
 */
-Route::get('/multi/image', [MultipicController::class, 'Multipic'])->name('multi.image');
-Route::post('/multi/add', [MultipicController::class, 'AddImg'])->name('store.image');
-Route::get('/multi/edit/{id}', [MultipicController::class, 'Edit']);
-Route::post('/multi/update/{id}', [MultipicController::class, 'Update']);
-Route::get('/multi/delete/{id}', [MultipicController::class, 'Delete']);
+Route::get('/multi/image', [MultipicController::class, 'Multipic'])->name('multi.image')->middleware('auth');
+Route::post('/multi/add', [MultipicController::class, 'AddImg'])->name('store.image')->middleware('auth');
+Route::get('/multi/edit/{id}', [MultipicController::class, 'Edit'])->middleware('auth');
+Route::post('/multi/update/{id}', [MultipicController::class, 'Update'])->middleware('auth');
+Route::get('/multi/delete/{id}', [MultipicController::class, 'Delete'])->middleware('auth');
 
 
 
