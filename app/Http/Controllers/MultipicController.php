@@ -10,11 +10,12 @@ use Image;
 
 class MultipicController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth'); // For redirecting the login page if the user is not logedin
-    }
-
+    // Lilyah: I have removed the constructor because I don't need it for every method in this class.
+    // Instead of this I place it in web.php
+    // public function __construct()
+    // {
+    //     $this->middleware('auth'); // For redirecting the login page if the user is not logedin
+    // }
 
     // Multi images All
     public function Multipic(){
@@ -123,4 +124,27 @@ class MultipicController extends Controller
         $delete = Multipic::find($id)->delete();
         return Redirect()->back()->with('success', 'Image Deleted Successfully');
     }
+
+
+    // Portfolio front-end
+    public function Portfolio(){
+        // Accessing table 'multipics'
+        $multipic_app = Multipic::where('filter', 'app')->get();
+        $multipic_app_count = Multipic::where('filter', 'app')->count();
+        $multipic_card = Multipic::where('filter', 'card')->get();
+        $multipic_card_count = Multipic::where('filter', 'card')->count();
+        $multipic_web = Multipic::where('filter', 'web')->get();
+        $multipic_web_count = Multipic::where('filter', 'web')->count();
+
+        // Passing $multipic_app, $multipic_app_count etc. with compact to the index page
+        return view('pages.portfolio', compact(
+        'multipic_app',
+        'multipic_app_count',
+        'multipic_card',
+        'multipic_card_count',
+        'multipic_web',
+        'multipic_web_count',
+        )); 
+    }
+
 }
