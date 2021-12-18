@@ -75,7 +75,7 @@ Route::get('/', function () {
         'multipic_web',
         'multipic_web_count',
     ));
-});
+})->name('home');
 
 Route::get('/home', function () {
     echo "This is home page";
