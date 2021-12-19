@@ -85,7 +85,7 @@ Route::get('/about', function () {
     return view('about');
 });//->middleware('age');
 
-Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::get('/contact', [ContactController::class, 'Contact'])->name('contact');
 Route::get('/portfolio', [MultipicController::class, 'Portfolio'])->name('portfolio');
 
 /* Category Routes
@@ -164,10 +164,10 @@ Route::post('/services/update/{id}', [ServicesController::class, 'Update']);
 
 /* Admin Contact Routes
 */
-Route::get('/admin/contact/all', [ContactController::class, 'AdminContact'])->name('admin.all.contact');
-Route::get('/admin/contact/add', [ContactController::class, 'AddContact'])->name('add.contact');
-Route::post('/admin/contact/store', [ContactController::class, 'StoreContact'])->name('store.contact');
-Route::get('/admin/contact/delete/{id}', [ContactController::class, 'Delete']);
+Route::get('/admin/contact/all', [ContactController::class, 'AdminContact'])->name('admin.all.contact')->middleware('auth');;
+Route::get('/admin/contact/add', [ContactController::class, 'AddContact'])->name('add.contact')->middleware('auth');;
+Route::post('/admin/contact/store', [ContactController::class, 'StoreContact'])->name('store.contact')->middleware('auth');;
+Route::get('/admin/contact/delete/{id}', [ContactController::class, 'Delete'])->middleware('auth');;
 
 
 
