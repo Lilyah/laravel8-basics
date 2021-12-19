@@ -68,17 +68,79 @@ class ContactController extends Controller
     }
 
 
+    // Edit method
+    public function Edit($id){
+        // Eloquent ORM
+        $contact = Contact::find($id); //finding the exact Contact with this id
+
+        // Query Builder
+        //$contact = DB::table('contacts')->where('id', $id)->first();
+        return view('admin.contact.edit', compact('contact')); // Passing the specific id to the edit page
+    }
+
+
+    // Update method
+    public function Update(Request $request, $id){
+        $validated = $request->validate([
+            'address' => 'required',
+            'visability' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            ],
+        );
+    
+        $visability_new_contact = $request->visability; // passing the data from visability html field into a variable $visability_new_contact
+    
+        if($visability_new_contact == 'active'){ // if the required visability from the form is 'active'
+    
+            // counting the 'active' records in the db and if there is 1 we denied to update the record
+            $count_active_from_db = DB::table('contacts')->where('visability', '=', 'active')->count();
+            if ($count_active_from_db == 1){
+                    return redirect()->back()->with('failure', 'There is another Active Contact Information. You can have only 1 Active Contact Information at a time.'); // redirect to previous page with message displaying for failure
+            } else {
+                // Eloquent ORM
+                Contact::find($id)->update([
+                    'address' => $request->address,
+                    'visability' => $request->visability,
+                    'email' => $request->email,
+                    'phone' => $request->phone,
+                    'updated_at' => Carbon::now()
+                ]);
+
+                return redirect()->route('admin.all.contact')->with('success', 'Contact Information updated successfully'); // redirect to home/about page with message displaying for success
+            }
+        } else {
+    
+            // Eloquent ORM
+            Contact::find($id)->update([
+                'address' => $request->address,
+                'visability' => $request->visability,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'updated_at' => Carbon::now()
+            ]);
+    
+                return redirect()->route('admin.all.contact')->with('success', 'Contact Information updated successfully'); // redirecting the page with message displaying for success
+        }
+        
+    }
+
+
     // Delete Contact
     public function Delete($id){
         $delete = Contact::find($id)->delete();
         return Redirect()->back()->with('success', 'Contact Information Deleted Successfully');
     }
 
-    
+
     // Returning view of contact page from resources/views/contact.blade.php
     public function Contact(){
+        $count_active_contacts = DB::table('contacts')->where('visability', '=', 'active')->count(); // accessing table 'contacts' and count all 'active' record from the db; the purpose of this line is to use $count_active_contacts in the view page and if there isnt any to not display them
+
         $contact = DB::table('contacts')->where('visability', '=', 'active')->orderby('updated_at', 'desc')->first(); // accessing table 'contacts' and get last updated record with visability 'active' record from the db
 
-        return view('pages/contact', compact('contact'));
+        return view('pages.contact', compact('contact', 'count_active_contacts'));
+    
+
     }
 }

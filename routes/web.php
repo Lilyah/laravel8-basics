@@ -164,10 +164,13 @@ Route::post('/services/update/{id}', [ServicesController::class, 'Update']);
 
 /* Admin Contact Routes
 */
-Route::get('/admin/contact/all', [ContactController::class, 'AdminContact'])->name('admin.all.contact')->middleware('auth');;
-Route::get('/admin/contact/add', [ContactController::class, 'AddContact'])->name('add.contact')->middleware('auth');;
-Route::post('/admin/contact/store', [ContactController::class, 'StoreContact'])->name('store.contact')->middleware('auth');;
-Route::get('/admin/contact/delete/{id}', [ContactController::class, 'Delete'])->middleware('auth');;
+Route::get('/admin/contact/all', [ContactController::class, 'AdminContact'])->name('admin.all.contact')->middleware('auth');
+Route::get('/admin/contact/add', [ContactController::class, 'AddContact'])->name('add.contact')->middleware('auth');
+Route::post('/admin/contact/store', [ContactController::class, 'StoreContact'])->name('store.contact')->middleware('auth');
+Route::get('/admin/contact/edit/{id}', [ContactController::class, 'Edit'])->middleware('auth');
+Route::post('/admin/contact/update/{id}', [ContactController::class, 'Update'])->middleware('auth');
+Route::get('/admin/contact/delete/{id}', [ContactController::class, 'Delete'])->middleware('auth');
+
 
 
 

@@ -25,6 +25,10 @@
     <section id="contact" class="contact">
       <div class="container">
 
+      @if($count_active_contacts > 0)
+      
+      <!-- The tab App will show if there are images for it --> 
+
         <div class="row justify-content-center" data-aos="fade-up">
 
           <div class="col-lg-10">
@@ -54,6 +58,8 @@
           </div>
 
         </div>
+
+        @endif
 
         <div class="row mt-5 justify-content-center" data-aos="fade-up">
           <div class="col-lg-10">
