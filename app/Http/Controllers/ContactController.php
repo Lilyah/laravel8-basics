@@ -5,14 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB; // Activate this in case of usin Query builder of type $users = DB::table('contacts')->get();
 
 class ContactController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth'); // For redirecting the login page if the user is not logedin
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth'); // For redirecting the login page if the user is not logedin
+    // }
 
 
     // Getting Admin Contact information
@@ -73,8 +74,11 @@ class ContactController extends Controller
         return Redirect()->back()->with('success', 'Contact Information Deleted Successfully');
     }
 
+    
     // Returning view of contact page from resources/views/contact.blade.php
-    public function index(){
-        return view('contact');
+    public function Contact(){
+        $contact = DB::table('contacts')->where('visability', '=', 'active')->orderby('updated_at', 'desc')->first(); // accessing table 'contacts' and get last updated record with visability 'active' record from the db
+
+        return view('pages/contact', compact('contact'));
     }
 }
