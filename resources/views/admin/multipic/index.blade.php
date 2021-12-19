@@ -48,8 +48,8 @@
                                           <td>{{ $multi->created_at }}</td>
                                           <td>{{ $multi->updated_at }}</td>
                                           <td>
-                                              <a href="{{ url('multi/edit/'.$multi->id)  }}" class="btn btn-info" style="color:white">Edit</a>
-                                              <a href="{{ url('multi/delete/'.$multi->id)  }}" onclick="return confirm('Are you sure you want to delete this Image?')" class="btn btn-danger">Delete</a>
+                                              <a href="{{ url('admin/multi/edit/'.$multi->id)  }}" class="btn btn-info" style="color:white">Edit</a>
+                                              <a href="{{ url('admin/multi/delete/'.$multi->id)  }}" onclick="return confirm('Are you sure you want to delete this Image?')" class="btn btn-danger">Delete</a>
                                           </td>
                                         </tr>
 

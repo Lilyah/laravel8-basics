@@ -9,8 +9,8 @@
 
 
                     <div class="col-md-12">
-                        <a href="{{ route('add.slider') }}">
-                            <button class="btn btn-info mb-3">Add Slider</button>
+                        <a href="{{ route('add.contact') }}">
+                            <button class="btn btn-info mb-3">Add Contact Information</button>
                         </a>
                     </div>
 
@@ -26,7 +26,7 @@
                         @endif
 
                             <div class="card-header">
-                                All Slider
+                                All Contact Informations
                             </div>
 
 
@@ -34,9 +34,9 @@
                                 <thead>
                                   <tr>
                                     <th scope="col" width="5%">ID</th>
-                                    <th scope="col" width="20%">Slider Title</th>
-                                    <th scope="col" width="25%">Slider Description</th>
-                                    <th scope="col" width="15%">Slider Image</th>
+                                    <th scope="col" width="5%">Visability</th>
+                                    <th scope="col" width="30%">Address</th>
+                                    <th scope="col" width="25%">Phone</th>
                                     <th scope="col" width="10%">Updated At</th>
                                     <th scope="col" width="10%">Created At</th>
                                     <th scope="col" width="15%">Action</th>
@@ -44,20 +44,18 @@
                                 </thead>
                                 <tbody>
 
-                                    @foreach($sliders as $slider)
+                                    @foreach($contacts as $contact)
 
                                         <tr>
-                                          <th scope="row">{{ $slider->id }}</th>
-                                          <td>{{ $slider->title }}</td>
-                                          <td>{{ $slider->description }}</td>
+                                          <th scope="row">{{ $contact->id }}</th>
+                                          <td>{{ $contact->visability }}</td>
+                                          <td>{{ $contact->address }}</td>
+                                          <td>{{ $contact->phone }}</td>
+                                          <td>{{ $contact->updated_at }}</td>
+                                          <td>{{ $contact->created_at }}</td>
                                           <td>
-                                              <img src="{{ asset($slider->image) }}" style="height:60px;" alt="">
-                                          </td> 
-                                          <td>{{ $slider->updated_at }}</td>
-                                          <td>{{ $slider->created_at }}</td>
-                                          <td>
-                                              <a href="{{ url('admin/slider/edit/'.$slider->id) }}" class="btn btn-info" style="color:white">Edit</a>
-                                              <a href="{{ url('admin/slider/delete/'.$slider->id)  }}" onclick="return confirm('Are you sure you want to delete this Slider?')" class="btn btn-danger">Delete</a>
+                                              <a href="{{ url('admin/contact/edit/'.$contact->id) }}" class="btn btn-info" style="color:white">Edit</a>
+                                              <a href="{{ url('admin/contact/delete/'.$contact->id) }}" onclick="return confirm('Are you sure you want to delete this Contact Information?')" class="btn btn-danger">Delete</a>
                                           </td>
                                         </tr>
 
@@ -71,7 +69,7 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td>{{ $sliders->links() }}</td>
+                                        <td>{{ $contacts->links() }}</td>
                                     </tr>
                                     
                                 </tbody>

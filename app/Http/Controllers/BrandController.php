@@ -138,7 +138,7 @@ class BrandController extends Controller
 
         }
 
-        return redirect()->route('all.brand')->with('success', 'Brand updated successfully'); // redirect to brand/all page with message displaying for success
+        return redirect()->route('admin.all.brand')->with('success', 'Brand updated successfully'); // redirect to brand/all page with message displaying for success
 
     }
 

@@ -13,7 +13,7 @@
                                 Edit Image
                             </div>
                             <div class="card-body">
-                                <form action="{{ url('multi/update/'.$multi->id) }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ url('admin/multi/update/'.$multi->id) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="old_image" value="{{ $multi->image }}">
                                     <div class="mb-3">

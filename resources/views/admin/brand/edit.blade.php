@@ -13,7 +13,7 @@
                                 Edit Category
                             </div>
                             <div class="card-body">
-                                <form action="{{ url('brand/update/'.$brands->id) }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ url('admin/brand/update/'.$brands->id) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="old_image" value="{{ $brands->brand_image }}">
                                     <div class="mb-3">

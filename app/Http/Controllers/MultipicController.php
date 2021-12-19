@@ -110,7 +110,7 @@ class MultipicController extends Controller
     
             }
     
-            return redirect()->route('multi.image')->with('success', 'Image updated successfully'); // redirect to multi/image page with message displaying for success
+            return redirect()->route('admin.multi.image')->with('success', 'Image updated successfully'); // redirect to multi/image page with message displaying for success
     
         }
         

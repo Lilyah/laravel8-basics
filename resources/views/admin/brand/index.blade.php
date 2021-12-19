@@ -44,8 +44,8 @@
                                           </td> 
                                           <td>{{ $brand->created_at }}</td>
                                           <td>
-                                              <a href="{{ url('brand/edit/'.$brand->id) }}" class="btn btn-info" style="color:white">Edit</a>
-                                              <a href="{{ url('brand/delete/'.$brand->id)  }}" onclick="return confirm('Are you sure you want to delete this Brand?')" class="btn btn-danger">Delete</a>
+                                              <a href="{{ url('admin/brand/edit/'.$brand->id) }}" class="btn btn-info" style="color:white">Edit</a>
+                                              <a href="{{ url('admin/brand/delete/'.$brand->id)  }}" onclick="return confirm('Are you sure you want to delete this Brand?')" class="btn btn-danger">Delete</a>
                                           </td>
                                         </tr>
 

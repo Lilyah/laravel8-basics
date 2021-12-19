@@ -56,8 +56,8 @@
                                           <td>{{ $about->updated_at }}</td>
                                           <td>{{ $about->created_at }}</td>
                                           <td>
-                                              <a href="{{ url('about/edit/'.$about->id) }}" class="btn btn-info" style="color:white">Edit</a>
-                                              <a href="{{ url('about/delete/'.$about->id)  }}" onclick="return confirm('Are you sure you want to delete this About?')" class="btn btn-danger">Delete</a>
+                                              <a href="{{ url('admin/about/edit/'.$about->id) }}" class="btn btn-info" style="color:white">Edit</a>
+                                              <a href="{{ url('admin/about/delete/'.$about->id)  }}" onclick="return confirm('Are you sure you want to delete this About?')" class="btn btn-danger">Delete</a>
                                           </td>
                                         </tr>
 

@@ -54,7 +54,7 @@ class HomeController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        return redirect()->route('home.slider')->with('success', 'Slider added successfully'); // redirect to previous page with message displaying for success
+        return redirect()->route('admin.all.slider')->with('success', 'Slider added successfully'); // redirect to previous page with message displaying for success
     }
 
 
@@ -113,7 +113,7 @@ class HomeController extends Controller
 
         }
     
-            return redirect()->route('home.slider')->with('success', 'Slider updated successfully'); // redirect to home/slider page with message displaying for success
+            return redirect()->route('admin.slider')->with('success', 'Slider updated successfully'); // redirect to home/slider page with message displaying for success
     
         }
 }

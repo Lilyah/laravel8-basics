@@ -107,7 +107,7 @@ class AboutController extends Controller
                     'updated_at' => Carbon::now()
                 ]);
 
-                    return redirect()->route('home.about')->with('success', 'About updated successfully'); // redirect to home/about page with message displaying for success
+                    return redirect()->route('admin.all.about')->with('success', 'About updated successfully'); // redirect to home/about page with message displaying for success
             }
         } else {
 
@@ -120,7 +120,7 @@ class AboutController extends Controller
                 'updated_at' => Carbon::now()
             ]);
 
-            return redirect()->route('home.about')->with('success', 'About updated successfully'); // redirect to home/about page with message displaying for success
+            return redirect()->route('admin.all.about')->with('success', 'About updated successfully'); // redirect to home/about page with message displaying for success
         }
     
     }

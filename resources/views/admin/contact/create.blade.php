@@ -3,15 +3,10 @@
 @section('admin')
 
 
-    <div class="col-lg-12">
-		<div class="card card-default">
-			<div class="card-header card-header-border-bottom">
-				<h2>Edit About for Homepage</h2>
-			</div>
 			<div class="card-body">
-                <form action="{{ url('admin/about/update/'.$homeabout->id) }}" method="POST">
+                <form action="{{ route('store.contact') }}" method="POST">
                     @csrf
-					
+
 					@if(session('failure'))
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <strong>{{ session('failure') }}</strong>
@@ -20,10 +15,10 @@
                     @endif
 
 					<div class="form-group">
-						<label for="">About Title</label>
-						<input type="text" class="form-control" id="" name="title" value="{{ $homeabout->title }}">
+						<label for="">Contact Email</label>
+						<input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}" >
 						<!-- Displaying errors if there is any -->
-						@error('title')
+						@error('email')
                         <span class="text-danger">{{ $message }}</span>
                         <br>
                         @enderror
@@ -33,50 +28,48 @@
 						<div class="col-12 text-left">
 							<label for="visability">Visability</label>
 						</div>
-
 						<div class="col-12 col-md-9">
 							<label class="control control-radio" for="visabilityActive">Active
-								<input type="radio" id="visabilityActive" value="active" name="visability"
-								{{ ($homeabout->visability == 'active')? 'checked' : '' }}/> <!-- if the field in the db is 'active' then this button will be checked -->
+								<input type="radio" id="visabilityActive" value="active" name="visability"/> 
 								<div class="control-indicator"></div>
 							</label>
 
 							<label class="control control-radio" for="visabilityInactive">Inactive
-								<input type="radio" id="visabilityInactive" value="inactive" name="visability"
-								{{ ($homeabout->visability == 'inactive')? 'checked' : '' }}/> <!-- if the field in the db is 'inactive' then this button will be checked -->
+								<input type="radio" id="visabilityInactive" value="inactive" name="visability"/> 
 								<div class="control-indicator"></div>
 							</label>
+
+							<!-- Displaying errors if there is any -->
+							@error('visability')
+                        	<span class="text-danger">{{ $message }}</span>
+                        	<br>
+                        	@enderror
 						</div>
 
+					</div>
+
+					<div class="form-group">
+						<label for="">Contact Phone</label>
+						<input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone') }}" >
 						<!-- Displaying errors if there is any -->
-						@error('visability')
+						@error('phone')
                         <span class="text-danger">{{ $message }}</span>
                         <br>
                         @enderror
 					</div>
 
 					<div class="form-group">
-						<label for="">About Short Description</label>
-						<textarea class="form-control" id="" name="short_desc" rows="3">{{ $homeabout->short_desc }}</textarea>
+						<label for="">Contact Address</label>
+						<textarea class="form-control" id="" name="address" rows="3">{{ old('address') }}</textarea>
 						<!-- Displaying errors if there is any -->
-						@error('short_desc')
-                        <span class="text-danger">{{ $message }}</span>
-                        <br>
-                        @enderror
-					</div>
-
-					<div class="form-group">
-						<label for="">About Long Description</label>
-						<textarea class="form-control" id="" name="long_desc" rows="3">{{ $homeabout->long_desc }}</textarea>
-						<!-- Displaying errors if there is any -->
-						@error('long_desc')
+						@error('address')
                         <span class="text-danger">{{ $message }}</span>
                         <br>
                         @enderror
 					</div>
 
 					<div class="form-footer pt-4 pt-5 mt-4 border-top">
-						<button type="submit" class="btn btn-primary btn-default">Update</button>
+						<button type="submit" class="btn btn-primary btn-default">Submit</button>
 					</div>
 
 				</form>

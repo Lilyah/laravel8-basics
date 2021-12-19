@@ -9,7 +9,7 @@
 				<h2>Edit Service for Homepage</h2>
 			</div>
 			<div class="card-body">
-                <form action="{{ url('services/update/'.$services->id) }}" method="POST">
+                <form action="{{ url('admin/services/update/'.$services->id) }}" method="POST">
                     @csrf
                     <div class="form-group row ml-1">
 						<label for="">Position:&nbsp;</label>

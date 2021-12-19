@@ -85,7 +85,7 @@ Route::get('/about', function () {
     return view('about');
 });//->middleware('age');
 
-Route::get('/contact', [ContactController::class, 'index'])->name('con');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/portfolio', [MultipicController::class, 'Portfolio'])->name('portfolio');
 
 /* Category Routes
@@ -99,21 +99,22 @@ Route::get('/pdelete/category/{id}', [CategoryController::class, 'PermanentDelet
 Route::get('/category/restore/{id}', [CategoryController::class, 'Restore']);
 
 
-/* Brand Routes
+/* Admin Brand Routes
 */
-Route::get('/brand/all', [BrandController::class, 'AllBrand'])->name('all.brand');
-Route::post('/brand/add', [BrandController::class, 'AddBrand'])->name('store.brand');
-Route::get('/brand/edit/{id}', [BrandController::class, 'Edit']);
-Route::post('/brand/update/{id}', [BrandController::class, 'Update']);
-Route::get('/brand/delete/{id}', [BrandController::class, 'Delete']);
+Route::get('/admin/brand/all', [BrandController::class, 'AllBrand'])->name('admin.all.brand');
+Route::post('/admin/brand/add', [BrandController::class, 'AddBrand'])->name('store.brand');
+Route::get('/admin/brand/edit/{id}', [BrandController::class, 'Edit']);
+Route::post('/admin/brand/update/{id}', [BrandController::class, 'Update']);
+Route::get('/admin/brand/delete/{id}', [BrandController::class, 'Delete']);
 
-/* Multi Image Routes
+
+/* Admin Multi Image Routes
 */
-Route::get('/multi/image', [MultipicController::class, 'Multipic'])->name('multi.image')->middleware('auth');
-Route::post('/multi/add', [MultipicController::class, 'AddImg'])->name('store.image')->middleware('auth');
-Route::get('/multi/edit/{id}', [MultipicController::class, 'Edit'])->middleware('auth');
-Route::post('/multi/update/{id}', [MultipicController::class, 'Update'])->middleware('auth');
-Route::get('/multi/delete/{id}', [MultipicController::class, 'Delete'])->middleware('auth');
+Route::get('/admin/multi/image/all', [MultipicController::class, 'Multipic'])->name('admin.multi.image')->middleware('auth');
+Route::post('/admin/multi/add', [MultipicController::class, 'AddImg'])->name('store.image')->middleware('auth');
+Route::get('/admin/multi/edit/{id}', [MultipicController::class, 'Edit'])->middleware('auth');
+Route::post('/admin/multi/update/{id}', [MultipicController::class, 'Update'])->middleware('auth');
+Route::get('/admin/multi/delete/{id}', [MultipicController::class, 'Delete'])->middleware('auth');
 
 
 
@@ -136,29 +137,39 @@ Route::get('/user/logout', [BrandController::class, 'Logout'])->name('user.logou
 
 /* Admin Slider Routes
 */
-Route::get('/home/slider', [HomeController::class, 'HomeSlider'])->name('home.slider');
-Route::get('/add/slider', [HomeController::class, 'AddSlider'])->name('add.slider');
-Route::post('/store/slider', [HomeController::class, 'StoreSlider'])->name('store.slider');
-Route::get('/slider/edit/{id}', [HomeController::class, 'Edit']);
-Route::post('/slider/update/{id}', [HomeController::class, 'Update']);
-Route::get('/slider/delete/{id}', [HomeController::class, 'Delete']);
+Route::get('/admin/slider/all', [HomeController::class, 'HomeSlider'])->name('admin.all.slider');
+Route::get('/admin/slider/add', [HomeController::class, 'AddSlider'])->name('add.slider');
+Route::post('/admin/slider/store', [HomeController::class, 'StoreSlider'])->name('store.slider');
+Route::get('/admin/slider/edit/{id}', [HomeController::class, 'Edit']);
+Route::post('/admin/slider/update/{id}', [HomeController::class, 'Update']);
+Route::get('/admin/slider/delete/{id}', [HomeController::class, 'Delete']);
 
 
 /* Admin About Routes
 */
-Route::get('/home/about', [AboutController::class, 'HomeAbout'])->name('home.about');
-Route::get('/add/about', [AboutController::class, 'AddAbout'])->name('add.about');
-Route::post('/store/about', [AboutController::class, 'StoreAbout'])->name('store.about');
-Route::get('/about/edit/{id}', [AboutController::class, 'Edit']);
-Route::post('/about/update/{id}', [AboutController::class, 'Update']);
-Route::get('/about/delete/{id}', [AboutController::class, 'Delete']);
+Route::get('/admin/about/all', [AboutController::class, 'HomeAbout'])->name('admin.all.about');
+Route::get('/admin/about/add', [AboutController::class, 'AddAbout'])->name('add.about');
+Route::post('/admin/about/store', [AboutController::class, 'StoreAbout'])->name('store.about');
+Route::get('/admin/about/edit/{id}', [AboutController::class, 'Edit']);
+Route::post('/admin/about/update/{id}', [AboutController::class, 'Update']);
+Route::get('/admin/about/delete/{id}', [AboutController::class, 'Delete']);
 
 
 /* Admin Services Routes
 */
-Route::get('/home/services', [ServicesController::class, 'HomeServices'])->name('home.services');
+Route::get('/admin/services/all', [ServicesController::class, 'HomeServices'])->name('admin.all.services');
 Route::get('/service/edit/{id}', [ServicesController::class, 'Edit']);
 Route::post('/services/update/{id}', [ServicesController::class, 'Update']);
+
+
+/* Admin Contact Routes
+*/
+Route::get('/admin/contact/all', [ContactController::class, 'AdminContact'])->name('admin.all.contact');
+Route::get('/admin/contact/add', [ContactController::class, 'AddContact'])->name('add.contact');
+Route::post('/admin/contact/store', [ContactController::class, 'StoreContact'])->name('store.contact');
+Route::get('/admin/contact/delete/{id}', [ContactController::class, 'Delete']);
+
+
 
 
 
