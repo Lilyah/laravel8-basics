@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Contact;
+use App\Models\ContactForm;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; // Activate this in case of usin Query builder of type $users = DB::table('contacts')->get();
@@ -140,7 +140,31 @@ class ContactController extends Controller
         $contact = DB::table('contacts')->where('visability', '=', 'active')->orderby('updated_at', 'desc')->first(); // accessing table 'contacts' and get last updated record with visability 'active' record from the db
 
         return view('pages.contact', compact('contact', 'count_active_contacts'));
-    
-
     }
+
+
+    // Contact form functionality
+    public function ContactForm(Request $request){
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'subject' => 'required',
+            'message' => 'required',
+            ],
+        );
+
+        // Eloquent ORM
+        ContactForm::insert([ // "ContactForm::" is the name of the model in app/Models/ContactForm.php
+            'name' => $request->name, // DB field => input field name from html form
+            'email' => $request->email,     
+            'subject' => $request->subject,            
+            'message' => $request->message,     
+            'created_at' => Carbon::now()
+        ]);    
+
+        return Redirect()->back()->with('success', 'Message sended Successfully'); // redirect to previous page with message displaying for success
+
+        
+    }
+    
 }
