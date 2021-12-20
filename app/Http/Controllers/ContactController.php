@@ -163,8 +163,16 @@ class ContactController extends Controller
         ]);    
 
         return Redirect()->back()->with('success', 'Message sended Successfully'); // redirect to previous page with message displaying for success
-
         
+    }
+
+
+    // Getting Contact Messages from the DB
+    public function AdminContactMessage(){
+        $messages = ContactForm::orderBy('id', 'desc')->paginate(
+            $perPage = 10, $columns = ['*'], $pageName = 'messages'
+            ); // Taking all data (with paginate() OR with get()) from the db table and assigning it into $contacts; ordering it by id in desc  
+        return view('admin.contact_message.message', compact('messages'));
     }
     
 }
