@@ -181,7 +181,9 @@ Route::post('/admin/contact/update/{id}', [ContactController::class, 'Update'])-
 Route::get('/admin/contact/delete/{id}', [ContactController::class, 'Delete'])->middleware('auth');
 
 
-
+/* Admin Contact Form Routes
+*/
+Route::get('/admin/contact/messages', [ContactController::class, 'AdminContactMessage'])->name('admin.contact.messages');
 
 
 
