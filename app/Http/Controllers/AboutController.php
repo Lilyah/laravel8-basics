@@ -62,7 +62,7 @@ class AboutController extends Controller
                 'long_desc' => $request->long_desc,     
                 'created_at' => Carbon::now()
             ]);     
-            return redirect()->route('home.about')->with('success', 'About added successfully'); // redirect to previous page with message displaying for success
+            return redirect()->route('admin.all.about')->with('success', 'About added successfully'); // redirect to previous page with message displaying for success
         
         }
     }
