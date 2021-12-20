@@ -85,8 +85,17 @@ Route::get('/about', function () {
     return view('about');
 });//->middleware('age');
 
+
+/* Front-end Contact page Routes
+*/
 Route::get('/contact', [ContactController::class, 'Contact'])->name('contact');
+Route::post('/contact/form', [ContactController::class, 'ContactForm'])->name('contact.form');
+
+
+/* Front-end Portfolio page Routes
+*/
 Route::get('/portfolio', [MultipicController::class, 'Portfolio'])->name('portfolio');
+
 
 /* Category Routes
 */
