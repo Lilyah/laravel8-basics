@@ -153,8 +153,8 @@
                         </a>
                       </li>
                       <li>
-                        <a href="email-inbox.html">
-                          <i class="mdi mdi-email"></i> Message
+                        <a href="{{ route('change.password') }}">
+                          <i class="mdi mdi-email"></i> Change Password
                         </a>
                       </li>
                       <li>
