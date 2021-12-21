@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\MultipicController;
 use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\ChangePassController;
 use App\Models\Services;
 use Illuminate\Support\Facades\Route;
 use App\Models\User; // Activate this in case of using type $users = User::all();
@@ -184,6 +185,11 @@ Route::get('/admin/contact/delete/{id}', [ContactController::class, 'Delete'])->
 /* Admin Contact Form Routes
 */
 Route::get('/admin/contact/messages', [ContactController::class, 'AdminContactMessage'])->name('admin.contact.messages')->middleware('auth');
+
+
+/* Admin Profile
+*/
+Route::get('/admin/user/password', [ChangePassController::class, 'ChangePassword'])->name('change.password')->middleware('auth');
 
 
 
