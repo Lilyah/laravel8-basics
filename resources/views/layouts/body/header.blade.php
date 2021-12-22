@@ -31,6 +31,12 @@
           <li><a href="pricing.html">Pricing</a></li>
           <li><a href="blog.html">Blog</a></li>
           <li><a href="{{ route('contact') }}">Contact</a></li>
+          @guest
+          <li><a href="{{ route('login') }}">Login</a></li>
+          @endguest
+          @auth
+          <li><a href="{{ route('login') }}">Dashboard</a></li>
+          @endauth
 
         </ul>
       </nav><!-- .nav-menu -->

@@ -189,7 +189,8 @@ Route::get('/admin/contact/messages', [ContactController::class, 'AdminContactMe
 
 /* Admin Profile
 */
-Route::get('/admin/user/profile/update', [ChangePassController::class, 'ProfileUpdate'])->name('profile.update')->middleware('auth');
+Route::get('/admin/user/profile', [ChangePassController::class, 'UserProfile'])->name('user.profile')->middleware('auth');
+Route::post('/admin/user/profile/update', [ChangePassController::class, 'UpdateUserProfile'])->name('update.user.profile')->middleware('auth');
 Route::get('/admin/user/password', [ChangePassController::class, 'ChangePassword'])->name('change.password')->middleware('auth');
 Route::post('/admin/user/password/update', [ChangePassController::class, 'UpdatePassword'])->name('password.update')->middleware('auth');
 

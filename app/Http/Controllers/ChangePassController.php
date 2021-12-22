@@ -40,20 +40,36 @@ class ChangePassController extends Controller
     }
 
 
-    // Update User Profile 
-    public function ProfileUpdate(Request $request){
+    // View Admin User Profile
+    public function UserProfile(){
         if(Auth::user()){ // If the user is logedin
             $user = User::find(Auth::user()->id); // finding the id of the logedin user and assigned it to $user
             if($user){ // if $user
                 return view('admin.body.update_profile', compact('user')); // returning the view with $user data
             }
         }
+    }
 
-        // $validated = $request->validate([
-        //     'old_password' => 'required',
-        //     'password' => 'required|confirmed',
-        //     ],
-        // );
+
+    // Update User Profile
+    public function UpdateUserProfile(Request $request){
+        $user = User::find(Auth::user()->id); // finding the id of the logedin user and assigned it to $user
+
+        if($user){
+            $validated = $request->validate([
+                'name' => 'required',
+                'email' => 'required',
+                ],
+            );
+
+            $user->name = $request['name']; // taking the name from the input html field and assigning it to $user->name in the DB
+            $user->email = $request['email']; // taking the email from the input html field and assigning it to $user->email in the DB
+
+            $user->save();
+            return redirect()->back()->with('success', 'User Profile Updated Successfully');
+        } else {
+            return redirect()->back()->with('failure', 'Something went wrong. Please, try again later or contact the admin');
+        }
 
     }
 }

@@ -148,7 +148,7 @@
                       </li>
 
                       <li>
-                        <a href="{{ route('profile.update') }}">
+                        <a href="{{ route('user.profile') }}">
                           <i class="mdi mdi-account"></i> My Profile
                         </a>
                       </li>
