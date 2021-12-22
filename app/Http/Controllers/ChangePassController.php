@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\Hash;
 
 class ChangePassController extends Controller
@@ -36,5 +37,23 @@ class ChangePassController extends Controller
             return redirect()->back()->with('error', 'Current Password is Invalid');
 
         }
+    }
+
+
+    // Update User Profile 
+    public function ProfileUpdate(Request $request){
+        if(Auth::user()){ // If the user is logedin
+            $user = User::find(Auth::user()->id); // finding the id of the logedin user and assigned it to $user
+            if($user){ // if $user
+                return view('admin.body.update_profile', compact('user')); // returning the view with $user data
+            }
+        }
+
+        // $validated = $request->validate([
+        //     'old_password' => 'required',
+        //     'password' => 'required|confirmed',
+        //     ],
+        // );
+
     }
 }
