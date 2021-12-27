@@ -84,7 +84,13 @@ class ChangePassController extends Controller
                 $user->updated_at = Carbon::now();
                 $user->save();
 
-                return redirect()->back()->with('success', 'User Profile Updated Successfully');
+                // Using ToastrJS for notification
+                $notification = array(
+                    'message' => 'User Profile Updated Successfully',
+                    'alert-type' => 'success'
+                );
+
+                return redirect()->back()->with($notification);
 
             } else { // If there is NOT new uploaded image
 
@@ -98,14 +104,34 @@ class ChangePassController extends Controller
                 $user->email = $request['email']; // taking the email from the input html field and assigning it to $user->email in the DB
                 $user->updated_at = Carbon::now();
                 $user->save();
-                return redirect()->back()->with('success', 'User Profile Updated Successfully');
+
+                // Using ToastrJS for notification
+                $notification = array(
+                    'message' => 'User Profile Updated Successfully',
+                    'alert-type' => 'success'
+                );
+
+                return redirect()->back()->with($notification);
 
             }
 
-            return redirect()->back()->with('failure', 'Something went wrong. Please, try again later or contact the admin');
+            // Using ToastrJS for notification
+            $notification = array(
+                'message' => 'Something went wrong. Please, try again later or contact the admin',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
 
         } else {
-            return redirect()->back()->with('failure', 'Something went wrong. Please, try again later or contact the admin');
+
+            // Using ToastrJS for notification
+            $notification = array(
+                'message' => 'Something went wrong. Please, try again later or contact the admin',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);        
         }
 
     }
