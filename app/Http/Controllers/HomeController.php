@@ -54,7 +54,13 @@ class HomeController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        return redirect()->route('admin.all.slider')->with('success', 'Slider added successfully'); // redirect to previous page with message displaying for success
+        // Using Toastr cdn for notification
+        $notification = array(
+            'message' => 'Slider added successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('admin.all.slider')->with($notification); // redirect to previous page with message displaying for success
     }
 
 
@@ -64,7 +70,14 @@ class HomeController extends Controller
         unlink($slider_image);
 
         $delete = Slider::find($id)->delete();
-        return Redirect()->back()->with('success', 'Slider Deleted Successfully');
+
+        // Using Toastr cdn for notification
+        $notification = array(
+            'message' => 'Slider Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return Redirect()->back()->with($notification);
     }
 
 
@@ -113,7 +126,12 @@ class HomeController extends Controller
 
         }
     
-            return redirect()->route('admin.slider')->with('success', 'Slider updated successfully'); // redirect to home/slider page with message displaying for success
+            $notification = array(
+                'message' => 'Slider updated successfully',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->route('admin.all.slider')->with($notification); // redirect to home/slider page with message displaying for success
     
         }
 }
