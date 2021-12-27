@@ -49,8 +49,13 @@ class AboutController extends Controller
 
             // counting the 'active' records in the db and if there is 1 we denied to insert data
             $count_active_from_db = DB::table('home_abouts')->where('visability', '=', 'active')->count();
+
             if ($count_active_from_db == 1){
-                    return redirect()->back()->withInput()->with('failure', 'There is another Active About. You can have only 1 Active About at a time.'); // withInput() is for not losing the input data in case of failure; redirect to previous page with message displaying for failure
+                $notification = array(
+                    'message' => 'There is another Active About. You can have only 1 Active About at a time',
+                    'alert-type' => 'warning'
+                );
+                    return redirect()->back()->withInput()->with($notification); // withInput() is for not losing the input data in case of failure; redirect to previous page with message displaying for failure
             }
         } else {
 
@@ -62,7 +67,14 @@ class AboutController extends Controller
                 'long_desc' => $request->long_desc,     
                 'created_at' => Carbon::now()
             ]);     
-            return redirect()->route('admin.all.about')->with('success', 'About added successfully'); // redirect to previous page with message displaying for success
+
+            // Using Toastr cdn for notification
+            $notification = array(
+                'message' => 'About added successfully',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->route('admin.all.about')->with($notification); // redirect to previous page with message displaying for success
         
         }
     }
@@ -95,8 +107,13 @@ class AboutController extends Controller
 
             // counting the 'active' records in the db and if there is 1 we denied to update the record
             $count_active_from_db = DB::table('home_abouts')->where('visability', '=', 'active')->count();
+
             if ($count_active_from_db == 1){
-                    return redirect()->back()->with('failure', 'There is another Active About. You can have only 1 Active About at a time.'); // redirect to previous page with message displaying for failure
+                $notification = array(
+                    'message' => 'There is another Active About. You can have only 1 Active About at a time',
+                    'alert-type' => 'warning'
+                );
+                    return redirect()->back()->with($notification); // redirect to previous page with message displaying for failure
             } else {
                 // Eloquent ORM
                 HomeAbout::find($id)->update([
@@ -107,7 +124,12 @@ class AboutController extends Controller
                     'updated_at' => Carbon::now()
                 ]);
 
-                    return redirect()->route('admin.all.about')->with('success', 'About updated successfully'); // redirect to home/about page with message displaying for success
+                $notification = array(
+                    'message' => 'About updated successfully',
+                    'alert-type' => 'success'
+                );
+
+                    return redirect()->route('admin.all.about')->with($notification); // redirect to home/about page with message displaying for success
             }
         } else {
 
@@ -120,7 +142,12 @@ class AboutController extends Controller
                 'updated_at' => Carbon::now()
             ]);
 
-            return redirect()->route('admin.all.about')->with('success', 'About updated successfully'); // redirect to home/about page with message displaying for success
+            $notification = array(
+                'message' => 'About updated successfully',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->route('admin.all.about')->with($notification); // redirect to home/about page with message displaying for success
         }
     
     }
@@ -129,6 +156,12 @@ class AboutController extends Controller
     // Delete About
     public function Delete($id){
         $delete = HomeAbout::find($id)->delete();
-        return Redirect()->back()->with('success', 'About Deleted Successfully');
+
+        $notification = array(
+            'message' => 'About Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        
+        return Redirect()->back()->with($notification);
     }
 }
