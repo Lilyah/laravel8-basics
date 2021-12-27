@@ -50,7 +50,14 @@ class ContactController extends Controller
             // counting the 'active' records in the db and if there is 1 we denied to insert data
             $count_active_from_db = DB::table('contacts')->where('visability', '=', 'active')->count();
             if ($count_active_from_db == 1){
-                    return redirect()->back()->withInput()->with('failure', 'There is another Active Contact Information. You can have only 1 Active Contact Information at a time.'); // withInput() is for not losing the input data in case of failure; redirect to previous page with message displaying for failure
+
+                // Using ToastrJS for notification
+                $notification = array(
+                    'message' => 'There is another Active Contact Information. You can have only 1 Active Contact Information at a time',
+                    'alert-type' => 'error'
+                );
+
+                return redirect()->back()->withInput()->with($notification); // withInput() is for not losing the input data in case of failure; redirect to previous page with message displaying for failure
             }
         } else {
     
@@ -62,7 +69,14 @@ class ContactController extends Controller
                 'phone' => $request->phone,     
                 'created_at' => Carbon::now()
             ]);     
-            return redirect()->route('admin.all.contact')->with('success', 'Contact Information added successfully'); // redirect to previous page with message displaying for success
+
+            // Using ToastrJS for notification
+            $notification = array(
+                'message' => 'Contact Information added successfully',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->route('admin.all.contact')->with($notification); // redirect to previous page with message displaying for success
             
         }
     }
@@ -96,7 +110,14 @@ class ContactController extends Controller
             // counting the 'active' records in the db and if there is 1 we denied to update the record
             $count_active_from_db = DB::table('contacts')->where('visability', '=', 'active')->count();
             if ($count_active_from_db == 1){
-                    return redirect()->back()->with('failure', 'There is another Active Contact Information. You can have only 1 Active Contact Information at a time.'); // redirect to previous page with message displaying for failure
+
+                // Using ToastrJS for notification
+                $notification = array(
+                    'message' => 'There is another Active Contact Information. You can have only 1 Active Contact Information at a time',
+                    'alert-type' => 'error'
+                 );
+
+                    return redirect()->back()->with($notification); // redirect to previous page with message displaying for failure
             } else {
                 // Eloquent ORM
                 Contact::find($id)->update([
@@ -107,7 +128,13 @@ class ContactController extends Controller
                     'updated_at' => Carbon::now()
                 ]);
 
-                return redirect()->route('admin.all.contact')->with('success', 'Contact Information updated successfully'); // redirect to home/about page with message displaying for success
+                // Using ToastrJS for notification
+                $notification = array(
+                    'message' => 'Contact Information Updated Successfully',
+                    'alert-type' => 'success'
+                );
+
+                return redirect()->route('admin.all.contact')->with($notification); // redirect to home/about page with message displaying for success
             }
         } else {
     
@@ -119,8 +146,14 @@ class ContactController extends Controller
                 'phone' => $request->phone,
                 'updated_at' => Carbon::now()
             ]);
+
+            // Using ToastrJS for notification
+            $notification = array(
+                'message' => 'Contact Information Updated Successfully',
+                'alert-type' => 'success'
+            );
     
-                return redirect()->route('admin.all.contact')->with('success', 'Contact Information updated successfully'); // redirecting the page with message displaying for success
+            return redirect()->route('admin.all.contact')->with($notification); // redirecting the page with message displaying for success
         }
         
     }
@@ -129,7 +162,14 @@ class ContactController extends Controller
     // Delete Contact
     public function Delete($id){
         $delete = Contact::find($id)->delete();
-        return Redirect()->back()->with('success', 'Contact Information Deleted Successfully');
+
+        // Using ToastrJS for notification
+        $notification = array(
+            'message' => 'Contact Information Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return Redirect()->back()->with($notification);
     }
 
 
