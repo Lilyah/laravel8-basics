@@ -7,13 +7,6 @@
                 <form action="{{ route('store.about') }}" method="POST">
                     @csrf
 
-					@if(session('failure'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong>{{ session('failure') }}</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    @endif
-
 					<div class="form-group">
 						<label for="">About Title</label>
 						<input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" >

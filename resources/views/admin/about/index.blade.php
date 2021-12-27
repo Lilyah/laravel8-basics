@@ -7,7 +7,6 @@
             <div class="container">
                 <div class="row">
 
-
                     <div class="col-md-12">
                         <a href="{{ route('add.about') }}">
                             <button class="btn btn-info mb-3">Add About</button>
@@ -17,18 +16,9 @@
                     <div class="col-md-12">
                         <div class="card">
 
-                        <!-- Displaying success messages after some action in the page -->
-                        @if(session('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <strong>{{ session('success') }}</strong>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        @endif
-
                             <div class="card-header">
                                 All Abouts
                             </div>
-
 
                             <table class="table">
                                 <thead>

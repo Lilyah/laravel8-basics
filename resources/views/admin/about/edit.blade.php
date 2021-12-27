@@ -11,13 +11,6 @@
 			<div class="card-body">
                 <form action="{{ url('admin/about/update/'.$homeabout->id) }}" method="POST">
                     @csrf
-					
-					@if(session('failure'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong>{{ session('failure') }}</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    @endif
 
 					<div class="form-group">
 						<label for="">About Title</label>
