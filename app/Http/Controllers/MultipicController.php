@@ -34,7 +34,7 @@ class MultipicController extends Controller
             ]
         );
 
-        $image = $request->file('image'); // passing the uploaded image into a variable $brand_image
+        $image = $request->file('image'); // passing the uploaded image into a variable $image
 
         // Foreach loop for uploading multiple images at once
         foreach($image as $multi_image){
@@ -52,7 +52,13 @@ class MultipicController extends Controller
             ]);
         } 
 
-        return redirect()->back()->with('success', 'Images added successfully'); // redirect to previous page with message displaying for success
+        // Using ToastrJS for notification
+        $notification = array(
+            'message' => 'Images Added Successfully',
+            'alert-type' => 'success'
+        );
+                
+        return redirect()->back()->with($notification); // redirect to previous page with message displaying for success
 
     }
 
@@ -109,8 +115,14 @@ class MultipicController extends Controller
                 ]);
     
             }
+
+            // Using ToastrJS for notification
+            $notification = array(
+                'message' => 'Image Updated Successfully',
+                'alert-type' => 'success'
+            );
     
-            return redirect()->route('admin.multi.image')->with('success', 'Image updated successfully'); // redirect to multi/image page with message displaying for success
+            return redirect()->route('admin.multi.image')->with($notification); // redirect to multi/image page with message displaying for success
     
         }
         
@@ -122,7 +134,14 @@ class MultipicController extends Controller
         unlink($image);
 
         $delete = Multipic::find($id)->delete();
-        return Redirect()->back()->with('success', 'Image Deleted Successfully');
+
+        // Using ToastrJS for notification
+        $notification = array(
+            'message' => 'Image Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return Redirect()->back()->with($notification);
     }
 
 
