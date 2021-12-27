@@ -168,8 +168,8 @@ Route::get('/admin/about/delete/{id}', [AboutController::class, 'Delete']);
 /* Admin Services Routes
 */
 Route::get('/admin/services/all', [ServicesController::class, 'HomeServices'])->name('admin.all.services');
-Route::get('/service/edit/{id}', [ServicesController::class, 'Edit']);
-Route::post('/services/update/{id}', [ServicesController::class, 'Update']);
+Route::get('/admin/service/edit/{id}', [ServicesController::class, 'Edit']);
+Route::post('/admin/services/update/{id}', [ServicesController::class, 'Update']);
 
 
 /* Admin Contact Routes
