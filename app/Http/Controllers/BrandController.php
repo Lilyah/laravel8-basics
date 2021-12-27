@@ -75,7 +75,13 @@ class BrandController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        return redirect()->back()->with('success', 'Brand added successfully'); // redirect to previous page with message displaying for success
+        // Using Toastr cdn for notification
+        $notification = array(
+            'message' => 'Brand added successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification); // redirect to previous page with message displaying for success
     }
 
 
@@ -138,7 +144,13 @@ class BrandController extends Controller
 
         }
 
-        return redirect()->route('admin.all.brand')->with('success', 'Brand updated successfully'); // redirect to brand/all page with message displaying for success
+        // Using Toastr cdn for notification
+        $notification = array(
+            'message' => 'Brand updated successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('admin.all.brand')->with($notification); // redirect to brand/all page with message displaying for success
 
     }
 
@@ -150,7 +162,14 @@ class BrandController extends Controller
         unlink($brand_image);
 
         $delete = Brand::find($id)->delete();
-        return Redirect()->back()->with('success', 'Brand Deleted Successfully');
+
+        // Using Toastr cdn for notification
+        $notification = array(
+            'message' => 'Brand Deleted successfully',
+            'alert-type' => 'success'
+        );
+
+        return Redirect()->back()->with($notification);
     }
 
 
