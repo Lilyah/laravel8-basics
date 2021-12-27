@@ -48,7 +48,12 @@ class ServicesController extends Controller
                 'updated_at' => Carbon::now()
             ]);
 
-            return redirect()->route('admin.all.services')->with('success', 'Service updated successfully'); // redirect to home/services page with message displaying for success
+            $notification = array(
+                'message' => 'Service updated successfully',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->route('admin.all.services')->with($notification); // redirect to home/services page with message displaying for success
         }
     
 }
