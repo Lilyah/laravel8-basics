@@ -214,5 +214,19 @@ class ContactController extends Controller
             ); // Taking all data (with paginate() OR with get()) from the db table and assigning it into $contacts; ordering it by id in desc  
         return view('admin.contact_message.message', compact('messages'));
     }
+
+
+    // Delete Contact Messages from Admin Panel
+    public function DeleteContactMessage($id){
+        $delete = ContactForm::find($id)->delete();
+
+        $notification = array(
+            'message' => 'Message Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        
+        return redirect()->back()->with($notification);
+
+    }
     
 }

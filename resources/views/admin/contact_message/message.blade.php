@@ -39,7 +39,7 @@
                                           <td>{{ $message->message }}</td>
                                           <td>{{ $message->created_at }}</td>
                                           <td>
-                                              <a href="" onclick="return confirm('Are you sure you want to delete this Message?')" class="btn btn-danger">Delete</a>
+                                              <a href="{{ url('admin/contact/messages/delete/'.$message->id)  }}" onclick="return confirm('Are you sure you want to delete this Message?')" class="btn btn-danger">Delete</a>
                                           </td>
                                         </tr>
 

@@ -185,6 +185,7 @@ Route::get('/admin/contact/delete/{id}', [ContactController::class, 'Delete'])->
 /* Admin Contact Form Routes
 */
 Route::get('/admin/contact/messages', [ContactController::class, 'AdminContactMessage'])->name('admin.contact.messages')->middleware('auth');
+Route::get('/admin/contact/messages/delete/{id}', [ContactController::class, 'DeleteContactMessage'])->middleware('auth');
 
 
 /* Admin Profile
