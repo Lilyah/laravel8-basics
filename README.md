@@ -22,7 +22,7 @@
 - Managing content - text, slider, images
 
 ## Technologies Used
-- PHP - [vesrion 8.0.8](https://www.php.net/)
+- PHP - [vesrsion 8.0.8](https://www.php.net/)
 - Laravel - [version 8.*](https://laravel.com/)
 - Composer - [version 2.1.14](https://getcomposer.org/)
 - Node.js - [version 16.9.1](https://nodejs.org/en/)
@@ -30,10 +30,27 @@
 
 ## Features
 - PHP image handling and manipulation library - [Intervention Image, v 2.*](http://image.intervention.io/)
+- ToastrJS library for non-blocking notifications - [version 2.1.4](https://cdnjs.com/libraries/toastr.js)
 
 
 ## Screenshots
-![none for now]()
+* Index page
+![Index page](./img/index.png)
+
+* Contact page
+![Contact page](./img/contact.png)
+
+* Login page
+![Login page](./img/login.png)
+
+* Admin Slider page
+![Admin Slider page](./img/admin_slider.png)
+
+* Admin Brands page
+![Admin Brands page](./img/admin_brands.png)
+
+* Admin Abouts page
+![Admin Abouts page](./img/admin_about.png)
 
 
 ## Setup for local environment
@@ -66,7 +83,7 @@ and typing in the browser `http://127.0.0.1:8000`
 
 
 ## Project Status
-Project is: _in progress_
+Project is: _finished_
 
 
 ## Contact
