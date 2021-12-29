@@ -63,10 +63,12 @@
             <div class="card-body p-5">
                         <!-- Displaying success messages after some action in the page -->
                         @if(session('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <strong>{{ session('success') }}</strong>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
+                            <div class="alert alert-dismissible fade show alert-success" role="alert">
+                              {{ session('success') }}
+												      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+													      <span aria-hidden="true">&times;</span>
+												      </button>
+											      </div>
                         @endif
               <h4 class="text-dark mb-5">Sign In</h4>
               <form method="POST" action="{{ route('login') }}">
